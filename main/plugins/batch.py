@@ -8,7 +8,7 @@ Plugin for both public & private channels!
 import time, os, asyncio
 
 from .. import bot as Drone
-from .. import userbot, Bot, AUTH, GROUP_ID
+from .. import userbot, Bot, AUTH,
 from .. import FORCESUB as fs
 from main.plugins.pyroplug import get_bulk_msg
 from main.plugins.helpers import get_link, screenshot
@@ -26,7 +26,7 @@ ft = f"To use this bot you've to join @{fs}."
 
 batch = []
 
-@Drone.on(events.NewMessage(incoming=True, from_users=AUTH, group_chat_id =GROUP_ID, pattern='/cancel'))
+@Drone.on(events.NewMessage(incoming=True, from_users=AUTH, pattern='/cancel'))
 async def cancel(event):
     if not event.sender_id in batch:
         return await event.reply("No batch active.")
@@ -81,11 +81,15 @@ async def run_batch(userbot, client, sender, link, _range):
     for i in range(_range):
         timer = 60
         if i < 25:
-            timer = 5
+            timer = 8
         if i < 50 and i > 25:
-            timer = 10
+            timer = 8
         if i < 100 and i > 50:
-            timer = 15
+            timer = 8
+        if i < 1000 and i > 100:
+            timer = 8
+        if i < 10000 and i > 1000:
+            timer = 8
         if not 't.me/c/' in link:
             if i < 25:
                 timer = 2
